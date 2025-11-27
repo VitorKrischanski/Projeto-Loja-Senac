@@ -144,6 +144,12 @@
                             <li class="nav-item">
                                 <a class="nav-link nav-link-custom" href="login.php">Login</a>
                             </li>
+                            </ul>
+
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-outline-primary me-2" type="button">
+                                    <i class="bi bi-person-circle me-1"></i> Minha Conta
+                                </button>
                             ';
                         }
                         else
@@ -152,6 +158,12 @@
                             <li class="nav-item">
                                 <a class="nav-link nav-link-custom" href="sair.php">Sair</a>
                             </li>
+                            </ul>
+
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-outline-primary me-2" type="button">
+                                    <i class="bi bi-person-circle me-1"></i> '.$_SESSION['nome'].'
+                                </button>
                             ';
                         }
                         
@@ -159,11 +171,7 @@
                         ?>
 
                     </ul>
-
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-outline-primary me-2" type="button" onclick="alert('Redirecionar para Minha Conta')">
-                            <i class="bi bi-person-circle me-1"></i> Minha Conta
-                        </button>
+                    
                         <button class="btn btn-custom text-white" type="button" onclick="alert('Abrir Carrinho')">
                             <i class="bi bi-cart3 me-1"></i> Carrinho
                         </button>

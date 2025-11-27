@@ -7,7 +7,7 @@
 
     //Gerando a pesquisa do produto no banco de dados
     $sql_consulta   = "SELECT * FROM produto WHERE id_produto = $id_produto";
-    $consulta      = mysqli_query($conecta, $sql_consulta);
+    $consulta       = mysqli_query($conecta, $sql_consulta);
     $contador       = mysqli_num_rows($consulta);
 ?>
 

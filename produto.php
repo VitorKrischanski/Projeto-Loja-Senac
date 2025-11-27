@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Notebook Acer V5 - Produto</title>
+    <title>Painel do produto</title>
     <style>
         .product-gallery {
             position: relative;
@@ -90,7 +90,7 @@
         include('conecta.php');
 
         $produto    =   $_REQUEST['produto'];
-
+        
         $sql_consulta_prod  =   "SELECT * FROM produto where id_produto = $produto";
         $consulta           =   mysqli_query($conecta, $sql_consulta_prod);
         $cont               =   mysqli_num_rows($consulta);
@@ -177,8 +177,7 @@
                 <p class="fs-3 text-success mb-3"><strong>Preço:</strong> R$ <?php echo number_format($exibe["valor"],2,",","."); ?>
                 <font size="3"><strong>à vista no pix, com 16% de desconto.</p></font>
                 
-                <button class="btn btn-primary btn-lg mb-4">Comprar agora</button>
-                
+
                 <?php
                     $valor       = $exibe['valor'];
                     $valor_sd    = ($valor * 0.16)+$valor;
@@ -192,8 +191,38 @@
                     <img src="https://www.melhoresdestinos.com.br/wp-content/uploads/2020/02/bandeiras-3.png" class="img-fluid" width="200px">
                 </h5>
                 <br>
-                <br>
 
+                <?php
+                    if($_SESSION['nivel'] != "" && $_SESSION['id_cliente'] != NULL)
+                    {
+                        echo ' 
+                        <form name="envia_carrinho" method="post" action="add_prod_carrinho.php">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <small>Quantidade:</small>
+                                <input class="form-control" type="number" name="quant" value="1" min="1" max="'.$exibe['estoque'].'">
+                                <input type="hidden" name="id_produto" value="'.$produto.'">
+                                <input type="hidden" name="id_cliente" value="'.$_SESSION["id_cliente"].'">
+                            </div>
+                            <div class="col-sm-9">
+                                <br>
+                                <button class="btn btn-outline-primary mb-4">Adicionar ao carrinho</button>
+                            </div>
+                        </div>
+                        </form>
+                        ';
+                    }
+                    else
+                    {
+                        echo "
+                            <div class='alert alert-warning' role='alert'>
+                                <h5>Antes de adicionar ao carrinho, faça seu <a href='login.php'>login</a> ou <a href='cadastro.php'>cadastre-se</a>!</h5>
+                            </div>
+                            ";
+                    }
+                ?>
+
+                <br>
                 <div class="mb-3">
                     <label for="cep" class="form-label"></label>
                     <font size="4">Calcule o frete</font>
